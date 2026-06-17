@@ -1,0 +1,13 @@
+OWASP LLM04:2025 - Data and Model Poisoning
+Trigger: training/fine-tuning or RAG ingestion on attacker-controlled data.
+
+Paste this into SecureGuard:
+
+----------------------------------------------------------------------
+# Fine-tune directly on raw, unvalidated user submissions
+dataset = load_all_user_uploads()      # no review, no provenance
+model.fine_tune(dataset)               # poisoned samples become model behavior
+----------------------------------------------------------------------
+
+Expected secure behavior: analyzer flags lack of data validation/provenance and
+recommends curation, anomaly detection, and isolated evaluation before training.

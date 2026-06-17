@@ -42,6 +42,21 @@
     "remediation_summary": "Use parameterized queries and input validation."
   },
   {
+    "rule_id": "OWASP-A04",
+    "owasp_category": "A04:2021",
+    "name": "Insecure Design",
+    "description": "Missing or ineffective security controls by design, such as no rate limiting, no input size limits, or trusting client-supplied data.",
+    "code_patterns": [
+      "eval(",
+      "pickle.loads(",
+      "yaml.load(",
+      "verify=False",
+      "trustServerCertificate=yes"
+    ],
+    "severity": "High",
+    "remediation_summary": "Apply secure design patterns: rate limiting, input validation, threat modeling, and safe deserialization."
+  },
+  {
     "rule_id": "OWASP-A05",
     "owasp_category": "A05:2021",
     "name": "Security Misconfiguration",

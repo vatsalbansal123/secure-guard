@@ -1,0 +1,14 @@
+OWASP LLM09:2025 - Misinformation
+Trigger: presenting unverified LLM output as authoritative (overreliance).
+
+Paste this into SecureGuard:
+
+----------------------------------------------------------------------
+# Auto-apply the model's "fix" to production with no human review or tests
+patch = llm.invoke("Fix all security bugs in this repo")
+apply_patch_to_main(patch)    # hallucinated/incorrect fix shipped blindly
+----------------------------------------------------------------------
+
+Expected secure behavior: analyzer warns against overreliance and recommends
+human review + tests. (For SecureGuard: its OWN score/analysis is advisory --
+the rule-engine findings give a deterministic cross-check against hallucination.)

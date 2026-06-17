@@ -1,0 +1,15 @@
+OWASP LLM03:2025 - Supply Chain
+Trigger: depending on an unvetted/typosquatted package or an untrusted model.
+
+Paste this into SecureGuard:
+
+----------------------------------------------------------------------
+# typosquat of "requests" - installs malware
+import reqeusts        # noqa
+# unpinned, unverified model pulled from a public hub at runtime
+model = load_model("random-user/totally-safe-llm")
+----------------------------------------------------------------------
+
+Expected secure behavior: analyzer notes unvetted dependencies / models and
+recommends pinning + provenance checks. (For SecureGuard itself, this maps to
+the Snyk dependency scan in docs/SNYK_FINDINGS.md.)

@@ -1,0 +1,16 @@
+OWASP LLM05:2025 - Improper Output Handling
+Trigger: trusting LLM output and passing it to a dangerous sink (eval/exec/SQL/HTML).
+
+Paste this into SecureGuard:
+
+----------------------------------------------------------------------
+answer = llm.invoke(user_question)
+# VULNERABLE: model output executed directly -> RCE / XSS / SQLi
+exec(answer)
+db.execute(answer)
+page.innerHTML = answer
+----------------------------------------------------------------------
+
+Expected secure behavior: analyzer flags that LLM output is untrusted and must be
+validated/encoded/sandboxed before reaching exec, SQL, or the DOM. (Note: YOUR UI
+renders LLM analysis via ReactMarkdown -- safe by default, no raw HTML injection.)

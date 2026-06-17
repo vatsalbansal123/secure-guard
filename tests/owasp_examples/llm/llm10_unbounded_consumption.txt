@@ -1,0 +1,14 @@
+OWASP LLM10:2025 - Unbounded Consumption
+Trigger: no limit on input size / request rate -> cost blow-up or denial of wallet.
+This directly affects YOUR app: CodeRequest.code is unbounded and routes have no
+rate limiting, so one user can send huge payloads straight to Azure OpenAI.
+
+Paste a very large blob (or many rapid requests) into SecureGuard to test:
+
+----------------------------------------------------------------------
+# Simulated: 5 MB of text in the "code" field, submitted 100x/second.
+("A" * 5_000_000)
+----------------------------------------------------------------------
+
+Expected secure behavior: server enforces a max input length, rate limits per
+client, and caps tokens. See docs/INSECURE_DEFAULTS.md (#2, #5).

@@ -1,0 +1,14 @@
+OWASP LLM08:2025 - Vector and Embedding Weaknesses
+Trigger: RAG over a shared vector store with no access control or input sanitation.
+
+Paste this into SecureGuard:
+
+----------------------------------------------------------------------
+# All tenants share one index; retrieved chunks are trusted blindly
+chunks = vector_store.search(query, namespace="GLOBAL")   # no tenant filter
+context = "\n".join(c.text for c in chunks)               # may contain injected text
+answer = llm.invoke(context + query)
+----------------------------------------------------------------------
+
+Expected secure behavior: analyzer flags missing tenant isolation and that
+retrieved content must be treated as untrusted (can carry indirect prompt injection).

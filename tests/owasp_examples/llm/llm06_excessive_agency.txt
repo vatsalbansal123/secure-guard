@@ -1,0 +1,13 @@
+OWASP LLM06:2025 - Excessive Agency
+Trigger: giving the LLM/agent tools with more permission or autonomy than needed.
+
+Paste this into SecureGuard:
+
+----------------------------------------------------------------------
+# Agent given an unrestricted shell tool and allowed to act with no human review
+tools = [ShellTool(allow_any_command=True), DeleteDatabaseTool()]
+agent = build_agent(tools, require_confirmation=False)
+----------------------------------------------------------------------
+
+Expected secure behavior: analyzer flags excessive permissions and recommends
+least-privilege tools, allow-lists, and human-in-the-loop for high-impact actions.
