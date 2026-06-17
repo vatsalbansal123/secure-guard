@@ -1,0 +1,82 @@
+[
+  {
+    "rule_id": "OWASP-A01",
+    "owasp_category": "A01:2021",
+    "name": "Broken Access Control",
+    "description": "Improper authorization checks.",
+    "code_patterns": [
+      "admin=true",
+      "is_admin",
+      "role=admin",
+      "bypass_auth"
+    ],
+    "severity": "High",
+    "remediation_summary": "Implement proper RBAC and authorization checks."
+  },
+  {
+    "rule_id": "OWASP-A02",
+    "owasp_category": "A02:2021",
+    "name": "Cryptographic Failures",
+    "description": "Weak encryption or plaintext storage.",
+    "code_patterns": [
+      "md5",
+      "sha1",
+      "password =",
+      "secret ="
+    ],
+    "severity": "High",
+    "remediation_summary": "Use bcrypt, Argon2, AES-256 and secure key management."
+  },
+  {
+    "rule_id": "OWASP-A03",
+    "owasp_category": "A03:2021",
+    "name": "Injection",
+    "description": "SQL Injection and command injection.",
+    "code_patterns": [
+      "SELECT * FROM",
+      "cursor.execute(",
+      "os.system(",
+      "subprocess.call("
+    ],
+    "severity": "Critical",
+    "remediation_summary": "Use parameterized queries and input validation."
+  },
+  {
+    "rule_id": "OWASP-A05",
+    "owasp_category": "A05:2021",
+    "name": "Security Misconfiguration",
+    "description": "Unsafe configurations.",
+    "code_patterns": [
+      "debug=True",
+      "allow_origins=['*']",
+      "root/root"
+    ],
+    "severity": "Medium",
+    "remediation_summary": "Harden configuration and disable debug modes."
+  },
+  {
+    "rule_id": "OWASP-A06",
+    "owasp_category": "A06:2021",
+    "name": "Vulnerable Components",
+    "description": "Outdated packages.",
+    "code_patterns": [
+      "requirements.txt",
+      "package.json"
+    ],
+    "severity": "High",
+    "remediation_summary": "Upgrade dependencies regularly."
+  },
+  {
+    "rule_id": "OWASP-A07",
+    "owasp_category": "A07:2021",
+    "name": "Authentication Failures",
+    "description": "Weak authentication.",
+    "code_patterns": [
+      "password == 'admin'",
+      "hardcoded_password",
+      "default_password"
+    ],
+    "severity": "High",
+    "remediation_summary": "Use MFA and secure password handling."
+  }
+]

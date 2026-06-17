@@ -1,0 +1,22 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: secureguard-backend
+    env_file: .env
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # Browser talks to the host-mapped backend, so use localhost for local runs
+        VITE_BACKEND_URL: http://localhost:8000
+    image: secureguard-frontend
+    ports:
+      - "8501:80"
+    depends_on:
+      - backend
