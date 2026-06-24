@@ -3,6 +3,10 @@
 .env.*
 !.env.example
 
+# API-key store (contains key hashes — never commit)
+*.db
+secureguard.db
+
 # Python
 venv/
 .venv/

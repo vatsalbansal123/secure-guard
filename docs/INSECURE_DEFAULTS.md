@@ -8,14 +8,14 @@ Severity uses the same scale as the rule engine (Critical/High/Medium/Low).
 
 | # | Issue | Location | Severity | Status |
 |---|-------|----------|----------|--------|
-| 1 | Permissive CORS (`*` methods/headers) | `backend/main.py:15-26` | Medium | Open |
-| 2 | No input size limit on submitted code | `backend/main.py:29-30` | High | Open |
-| 3 | No authentication on any route | `backend/main.py:33,49` | High | Open |
-| 4 | No rate limiting / token cap | `backend/main.py`, `backend/agent.py` | High | Open |
-| 5 | Untrusted code injected into LLM prompt | `backend/agent.py:73-89` | High | Open |
-| 6 | Hardcoded config values | `backend/main.py:21`, `backend/database/main.py:3-6` | Low | Open |
-| 7 | Errors returned verbatim to client | `backend/main.py:106` | Low | Open |
-| 8 | Vulnerable dependencies | `requirements.txt` | High | See SNYK_FINDINGS.md |
+| 1 | Permissive CORS (`*` methods/headers) | `backend/main.py` | Medium | ✅ Fixed (Week 2) — methods→`POST`, headers→explicit |
+| 2 | No input size limit on submitted code | `backend/models.py` | High | ✅ Fixed (Week 2) — `max_length=10_000` + validators |
+| 3 | No authentication on any route | `backend/main.py`, `backend/auth.py` | High | ✅ Fixed (Week 2) — API-key dependency |
+| 4 | No rate limiting / token cap | `backend/main.py`, `backend/agent.py` | High | ✅ Fixed (Week 2) — slowapi 20/hr + `max_tokens` |
+| 5 | Untrusted code injected into LLM prompt | `backend/agent.py` | High | ✅ Fixed (Week 2) — delimited + system message |
+| 6 | Hardcoded config values | `backend/main.py`, `backend/database/main.py:3-6` | Low | Open (Week 3) |
+| 7 | Errors returned verbatim to client | `backend/main.py` | Low | ✅ Fixed (Week 2) — structured errors, no leaks |
+| 8 | Vulnerable dependencies | `requirements.txt` | High | ✅ Fixed — see SNYK_FINDINGS.md |
 
 ---
 
